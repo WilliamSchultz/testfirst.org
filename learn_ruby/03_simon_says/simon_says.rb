@@ -24,6 +24,6 @@ def titleize(sentence)
   sentence.split.map.with_index { |i, index| little_words.include?(i) && index > 0 ? i : i.capitalize }.join(" ") 
 end 
 
-print titleize("jaws")
+print titleize("the man of many wonders")
 
 
