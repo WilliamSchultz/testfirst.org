@@ -1,4 +1,5 @@
 class Dictionary
+
   attr_accessor :entries
   
   def initialize
@@ -14,9 +15,24 @@ class Dictionary
   end 
   
   def keywords
-    @entries.keys
+    @entries.keys.sort
   end 
   
+  def include?(input)
+    @entries.keys.include?(input) ? true : false
+  end 
+  
+ def find(input={})
+   matches = {}
+   if @entries.empty? == true then {} end
+   @entries.each { |key, value| if key[0...input.length] == input then matches[key] = value end }
+   matches
+ end 
+ 
+ def printable
+   @entries.sort.map { |key, value| "[#{key}] \"#{value}\"" }.join("\n")
+ end 
 end 
 
-puts t = Dictionary.new
+
+
