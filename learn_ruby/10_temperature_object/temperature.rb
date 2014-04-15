@@ -1,6 +1,6 @@
 class Temperature
 
-  def initialize(input)
+  def initialize(input) #initialize method passes in any parameters that will be passed to new
     @fahrenheit = input[:f] || input[:c] * (9.0/5.0) + 32 #determines if input is :c or :f
   end
 

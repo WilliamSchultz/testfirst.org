@@ -38,8 +38,39 @@ class RPNCalculator
   end 
     
   def value
-    p @stack[-1]
+    @stack[-1] #returns the newest member to the arrary
   end
+  
+  def tokens(string)
+    list = []
+    string.split.each do |i| 
+      if i.match(/[0-9]/) #searches for just numbers
+        list << i.to_i
+      else
+        list << i.to_sym
+      end 
+    end
+      list
+  end
+  
+  def evaluate(string)
+   tokens(string).each do |i|
+     case i
+     when :+
+       plus
+     when :-
+       minus
+     when :*
+       times
+     when :/
+       divide
+     else 
+       @stack.push(i.to_f)
+     end 
+   end
+   @stack[-1] #returns the newest member to the arrary
+ end 
+
 end 
 
 
