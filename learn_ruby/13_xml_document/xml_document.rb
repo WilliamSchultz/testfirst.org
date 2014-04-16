@@ -1,14 +1,25 @@
 class XmlDocument
   
-  def hello(hash=nil)
-    hash.nil? ? "<hello/>" : "<hello #{hash.keys[0]}='#{hash[:name]}'/>"
+  def hello(hash={}, &block)
+    if block.to_s.empty? == true
+      hash.empty? ? "<hello/>" : "<hello #{hash.keys[0]}='#{hash[:name]}'/>"
+    else
+    "<hello>#{yield}</hello>"
+    end 
   end 
+  
+  def goodbye
+    "<goodbye/>"
+  end 
+  
   
   def send(input)
     "<#{input}/>"
-  end 
+  end  
   
 end 
 
-xml = XmlDocument.new
-puts xml.hello
+@xml = XmlDocument.new
+@xml.hello do
+  "dolly"
+end
