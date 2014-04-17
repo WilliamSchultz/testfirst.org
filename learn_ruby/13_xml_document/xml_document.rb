@@ -1,7 +1,5 @@
 class XmlDocument
   
-  attr_accessor :indent
-  
   def initialize(indent=false)
     @indent = indent
   end 
@@ -46,6 +44,7 @@ class XmlDocument
   
   def send(input)
     "<#{input}/>"
-  end  
+  end
+    
 end 
 
