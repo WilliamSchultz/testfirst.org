@@ -19,8 +19,15 @@ module InWords
    when 100..999
      for_hundreds(number)
    when 1000..99999
-     for_thousands(number) 
+     for_thousands(number)
+   when 1_000_000..999_999_999
+     for_millions(number)
+   when 1_000_000_000..9_999_999_999
+     for_billions(number)
+   when 1_000_000_000_000..1_999_999_999_999
+     for_trillions(number)
    end
+   
  end
  
  def for_tens(input)
@@ -32,17 +39,37 @@ module InWords
      $one[input.to_s.slice(-3).to_i] + " " + "hundred"
    elsif input.to_s.slice(1).to_i == 1 #for teens
      $one[input.to_s.slice(-3).to_i] + " " + "hundred " + $teen[input.to_s.slice(2).to_i]
+   elsif input.to_s.slice(0).to_i == 0
+     ''
    else 
      $one[input.to_s.slice(-3).to_i] + " " + "hundred " + for_tens(input.to_s.slice(1,2).to_i) # < 20
   end 
  end
  
  def for_thousands(input)
-   if input.to_s.length.to_i == 4
+   if input.to_s.length.to_i == 4 # > 10k
      $one[input.to_s.slice(0).to_i] + " thousand"
-   else 
+   else # < 10k
      for_tens(input.to_s.slice(0,2).to_i) + " thousand " + for_hundreds(input.to_s.slice(2,3).to_i)
    end 
+ end
+ 
+ def for_millions(input)
+   if input.to_s.slice(0,2).to_i < 20 # < 20m
+     $teen[input.to_s.slice(0).to_i-1] + " million" + " one"
+   else # > 20 m
+     
+   end 
+ end
+ 
+ def for_billions(input)
+   if input.to_s.slice(0,1).to_i < 10
+     $one[input.to_s.slice(0,1).to_i] + " billion " + for_hundreds(input.to_s.slice(1,3).to_i) + " million " +
+     for_hundreds(input.to_s.slice(4,3).to_i) + " thousand " + for_hundreds(input.to_s.slice(7,3).to_i)
+   end
+ end   
+ 
+ def for_trillions(input)
  end 
  
 end
@@ -51,7 +78,7 @@ class Fixnum
   include InWords
 end 
 
-
+puts 1_000_000_000.in_words
 
 
    
