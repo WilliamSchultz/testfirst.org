@@ -35,7 +35,9 @@ module InWords
  end
  
  def for_hundreds(input)
-   if input.to_s.slice(1,2).to_i == 00 #last two numbers 0?
+   if input == 00
+     ''
+   elsif input.to_s.slice(1,2).to_i == 00 #last two numbers 0?
      $one[input.to_s.slice(-3).to_i] + " " + "hundred"
    elsif input.to_s.slice(1).to_i == 1 #for teens
      $one[input.to_s.slice(-3).to_i] + " " + "hundred " + $teen[input.to_s.slice(2).to_i]
@@ -70,6 +72,12 @@ module InWords
  end   
  
  def for_trillions(input)
+   if input.to_s.length.to_i == 13 # <= 9t
+     $one[input.to_s.slice(0,1).to_i] + " trillion" + for_hundreds(input.to_s.slice(1,3).to_i) 
+   else # >= 10t
+     
+   end 
+   
  end 
  
 end
@@ -78,7 +86,7 @@ class Fixnum
   include InWords
 end 
 
-puts 1_000_000_000.in_words
+puts 1_000_000_000_000.in_words
 
 
    
