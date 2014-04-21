@@ -75,13 +75,13 @@ module InWords
  
  def for_trillions(input)
    if input.to_s.length.to_i == 13 # <= 9t
-     ($one[input.to_s.slice(0,1).to_i] + " trillion " + 
-     if input.to_s.slice(1,3).to_i == 0 then "" else for_hundreds(input.to_s.slice(1,3).to_i) + ' billion ' + end
-     for_hundreds(input.to_s.slice(4,3).to_i) + ' million ' +
-     for_hundreds(input.to_s.slice(7,3).to_i) + ' thousand ' +
-     for_hundreds(input.to_s.slice(10,3).to_i)).strip
+     ($one[input.to_s.slice(0,1).to_i] + " trillion " +
+     if input.to_s.slice(1,3).to_i == 0 then '' else for_hundreds(input.to_s.slice(1,3).to_i) + " billion " end +
+     if input.to_s.slice(4,3).to_i == 0 then '' else for_hundreds(input.to_s.slice(4,3).to_i) + " million " end +
+     if input.to_s.slice(7,3).to_i == 0 then '' else for_hundreds(input.to_s.slice(7,3).to_i) + " thousand " end +
+     if input.to_s.slice(10,3).to_i == 0 then '' else for_hundreds(input.to_s.slice(10,3).to_i) end).strip
    else # >= 10t
-     
+     "k"
    end 
    
  end 
