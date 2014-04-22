@@ -81,7 +81,7 @@ module InWords
      if input.to_s.slice(7,3).to_i == 0 then '' else for_hundreds(input.to_s.slice(7,3).to_i) + " thousand " end +
      if input.to_s.slice(10,3).to_i == 0 then '' else for_hundreds(input.to_s.slice(10,3).to_i) end).strip
    else # >= 10t
-     "k"
+     
    end 
    
  end 
@@ -92,7 +92,7 @@ class Fixnum
   include InWords
 end 
 
-puts 1_888_259_040_036.in_words
+
 
 
    
